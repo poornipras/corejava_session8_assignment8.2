@@ -1,0 +1,90 @@
+Write a program to generate a user-defined exception called NegativeAgeException if user inputs
+negative value for age.
+
+
+package session8;
+import java.util.*;
+public class AgeNegativeException 
+{
+	public static void main(String[] args)
+	{
+		persondetails p=new persondetails();
+		NegativeAgeException e=new NegativeAgeException();
+		p.getName();
+		p.getAddress();
+	    int age=p.getAge();
+		
+		if(age<0)
+		{
+			try {
+				throw e;
+			} 
+			catch (NegativeAgeException e1) 
+			{
+				System.out.println("Re-enter age because "+ e.getMessage());
+				age=p.getAge();				
+			}
+		}
+		
+		System.out.println("Ticket cost for the person is:");
+	p.ticket(age);
+}
+}
+
+class persondetails
+{
+	String name;
+	int age;
+	String address;
+	Scanner sc=new Scanner(System.in);
+	public String getName()
+	{
+		System.out.println("Enter name:");
+		name=sc.nextLine();
+		return name;
+	}
+	public int getAge() {
+		System.out.println("Enter age:");
+		age=sc.nextInt();
+		return age;
+	}
+		public String getAddress()
+		{
+			System.out.println("Enter address:");
+			address=sc.nextLine();
+			return address;
+		}
+		
+		public void ticket(int age)
+		{
+			if(age<5)
+			{
+				System.out.println("No ticket cost");
+			}
+			if(age>5 && age<13)
+			{
+				System.out.println("Ticket cost is Rs50");
+			}
+			if(age>13 && age<18)
+			{
+				System.out.println("Ticket cost is Rs100");
+								
+			}
+			if(age>18)
+				System.out.println("Ticket cost is Rs 300");
+		}
+}
+
+
+
+
+class NegativeAgeException extends Exception
+{
+	String msg="Negative value for Age not acceptable";
+	public String  getMessage()
+	{
+		
+		return msg;
+	}
+	
+}
